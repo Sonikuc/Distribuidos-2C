@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using RestSharp;
 using MediatR;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace UCABPagaloTodoMS;
 
@@ -93,6 +96,13 @@ public class Startup
                     new HealthCheckOptions { Predicate = check => check.Tags.Contains("ready") });
                 endpoints.MapHealthChecks("/health/live", new HealthCheckOptions { Predicate = _ => false });
             });
+        }
+    using (var scope = app.ApplicationServices.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<IUCABPagaloTodoDbContext>();
+
+        // Aplica las migraciones al iniciar la aplicación
+        dbContext.DbContext.Database.MigrateAsync();
         }
     }
 }

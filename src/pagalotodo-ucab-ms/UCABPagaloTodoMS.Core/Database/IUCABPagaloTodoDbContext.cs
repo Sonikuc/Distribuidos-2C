@@ -6,6 +6,8 @@ namespace UCABPagaloTodoMS.Core.Database
     public interface IUCABPagaloTodoDbContext
     {
         DbSet<ValoresEntity> Valores { get; }
+        DbSet<User> User { get; }
+        DbSet<Emails> Emails { get; }
 
         DbContext DbContext
         {

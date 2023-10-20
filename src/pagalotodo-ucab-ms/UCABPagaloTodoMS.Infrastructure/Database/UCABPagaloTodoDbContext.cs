@@ -15,6 +15,8 @@ public class UCABPagaloTodoDbContext : DbContext, IUCABPagaloTodoDbContext
     }
 
     public virtual DbSet<ValoresEntity> Valores { get; set; } = null!;
+    public virtual DbSet<User> User { get; set; } = null!;
+    public virtual DbSet<Emails> Emails { get; set; } = null!;
 
     public DbContext DbContext
     {
