@@ -12,11 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCABPagaloTodoMSS.Application", "UCABPagaloTodoMS.Application\UCABPagaloTodoMS.Application.csproj", "{D290F8E8-05A2-4A8B-8DEF-C13A3D0DDB2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCABPagaloTodoMS.Application", "UCABPagaloTodoMS.Application\UCABPagaloTodoMS.Application.csproj", "{D290F8E8-05A2-4A8B-8DEF-C13A3D0DDB2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCABPagaloTodoMS.Core", "UCABPagaloTodoMS.Core\UCABPagaloTodoMS.Core.csproj", "{38865DB9-6C18-44EA-9C63-F9950AF658A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCABPagaloTodoMS.Infrastructure", "UCABPagaloTodoMS.Infrastructure\UCABPagaloTodoMS.Infrastructure.csproj", "{ABB58348-08EE-4230-843C-510491D90BDC}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B7087E41-3053-49BD-8DC9-3AA43FD98466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,18 @@ Global
 		{ABB58348-08EE-4230-843C-510491D90BDC}.Release|x64.Build.0 = Release|Any CPU
 		{ABB58348-08EE-4230-843C-510491D90BDC}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABB58348-08EE-4230-843C-510491D90BDC}.Release|x86.Build.0 = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|x64.Build.0 = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Debug|x86.Build.0 = Debug|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|x64.Build.0 = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7087E41-3053-49BD-8DC9-3AA43FD98466}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
