@@ -54,6 +54,25 @@ namespace UCABPagaloTodoMS.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<ValoresResponse>>> UserById(int id)
+        {
+            _logger.LogInformation("Entrando al método que consulta los valores de ejemplo");
+            try
+            {
+                var query = new GetUserByIdQuery(id);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocurrio un error en la consulta de los valores de prueba. Exception: " + ex);
+                throw;
+            }
+        }
+
         /// <summary>
         ///     Endpoint que registra un valor.
         /// </summary>
@@ -68,7 +87,7 @@ namespace UCABPagaloTodoMS.Controllers
         ///     - Operation successful.
         /// </response>
         /// <returns>Retorna el id del nuevo registro.</returns>
-        [HttpPost("/")]
+        [HttpPost("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<UserRequest>> AgregarUser(UserRequest valor)
@@ -83,6 +102,63 @@ namespace UCABPagaloTodoMS.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+                throw;
+            }
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<ValoresResponse>>> UpdateUserById(int id, UserRequest request)
+        {
+            _logger.LogInformation("Entrando al método que consulta los valores de ejemplo");
+            try
+            {
+                var query = new PutUserCommand(request,id);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocurrio un error en la consulta de los valores de prueba. Exception: " + ex);
+                throw;
+            }
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<ValoresResponse>>> PatchUserById(int id, [FromBody] UserRequest name)
+        {
+            _logger.LogInformation("Entrando al método que consulta los valores de ejemplo");
+            try
+            {
+                var query = new PatchUserCommand(name, id);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocurrio un error en la consulta de los valores de prueba. Exception: " + ex);
+                throw;
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<string>> DeleteUserById(int id)
+        {
+            _logger.LogInformation("Entrando al método que consulta los valores de ejemplo");
+            try
+            {
+                var query = new DeleteUserCommand(id);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocurrio un error en la consulta de los valores de prueba. Exception: " + ex);
                 throw;
             }
         }

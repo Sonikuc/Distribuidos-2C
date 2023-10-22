@@ -9,6 +9,6 @@ namespace UCABPagaloTodoMS.Core.Entities
     public class Emails : BaseEntity
     {
         public string? Email { get; set; }
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

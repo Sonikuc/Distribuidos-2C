@@ -9,21 +9,22 @@ using System.Threading.Tasks;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Database;
+using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries
 {
-    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, GetUsersResponse>
+    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserResponse>
     {
         private readonly IUCABPagaloTodoDbContext _dbContext;
-        private readonly ILogger<GetUsersQueryHandler> _logger;
+        private readonly ILogger<GetUserByIdQueryHandler> _logger;
 
-        public GetUsersQueryHandler(IUCABPagaloTodoDbContext dbContext, ILogger<GetUsersQueryHandler> logger)
+        public GetUserByIdQueryHandler(IUCABPagaloTodoDbContext dbContext, ILogger<GetUserByIdQueryHandler> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
         }
 
-        public Task<GetUsersResponse> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+        public Task<UserResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -34,7 +35,7 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries
                 }
                 else
                 {
-                    return HandleAsync();
+                    return HandleAsync(request);
                 }
             }
             catch (Exception)
@@ -44,29 +45,26 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries
             }
         }
 
-        private async Task<GetUsersResponse> HandleAsync()
+        private async Task<UserResponse> HandleAsync(GetUserByIdQuery request)
         {
             try
             {
                 _logger.LogInformation("ConsultarValoresQueryHandler.HandleAsync");
 
-                var result = _dbContext.User.Include(u => u.Emails).ToList();
-                var response = new GetUsersResponse { count = result.Count(), results = new List<UserResponse>() };
-                foreach(var item in result ) 
+                var result = _dbContext.User.Include(u => u.Emails).FirstOrDefault(c=>c.Id == request.UserId);
+                if (result == null) 
                 {
-                    var user = new UserResponse
-                    {
-                        Id = item.Id,
-                        Name = item.Name,
-                        Emails = new List<string>()
-                    };
-                    if (item.Emails.Count() > 0)
-                        foreach (var email in item.Emails) 
-                        {
-                            if(email.Email != null)
-                            user.Emails.Add(email.Email);
-                        }
-                    response.results.Add(user);
+                    throw new ArgumentNullException(nameof(result));
+                }
+                var response = new UserResponse
+                {
+                    Id = result.Id,
+                    Name = result.Name,
+                    Emails = new List<string>()
+                };
+                foreach (var email in result.Emails) 
+                {
+                    response.Emails.Add(email.Email);
                 }
 
                 return response;
@@ -77,6 +75,6 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries
                 throw;
             }
         }
-    }
 
+    }
 }

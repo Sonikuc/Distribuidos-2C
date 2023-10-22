@@ -10,6 +10,6 @@ namespace UCABPagaloTodoMS.Application.Responses
     public class GetUsersResponse
     {
         public int count { get; set; }
-        public List<User>results {get; set;}
+        public List<UserResponse>results {get; set;}
     }
 }
